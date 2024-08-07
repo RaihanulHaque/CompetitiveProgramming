@@ -27,14 +27,21 @@ class Solution
 public:
     vector<int> twoSum(vector<int> &numbers, int target)
     {
-        unordered_map<int, int> mp;
-        for (int i = 0; i < numbers.size(); i++)
+        int l = 0, r = numbers.size() - 1;
+        while (l < r)
         {
-            if (mp.find(target - numbers[i]) != mp.end())
+            if (numbers[l] + numbers[r] == target)
             {
-                return {mp[target - numbers[i]] + 1, i + 1};
+                return {l + 1, r + 1};
             }
-            mp[numbers[i]] = i;
+            else if (numbers[l] + numbers[r] > target)
+            {
+                r--;
+            }
+            else
+            {
+                l++;
+            }
         }
     }
 };
